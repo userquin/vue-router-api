@@ -20,6 +20,7 @@ export function createNavigationApiHistory(base = ''): RouterHistory {
     const listeners: HistoryListener[] = [];
 
     const handleNavigate = (event: NavigateEvent): void => {
+        console.log(event)
         // No interceptamos cambios de hash, descargas o si la navegación no puede ser interceptada
         if (!event.canIntercept || event.hashChange || event.downloadRequest) {
             return;
@@ -58,7 +59,7 @@ export function createNavigationApiHistory(base = ''): RouterHistory {
     const history: RouterHistory = {
         // Propiedades requeridas por la interfaz
         location: '', // Hacemos un cast para que coincida con la interfaz
-        state,
+        state: state.value,
         base,
 
         createHref: createHref.bind(null, base),
@@ -101,4 +102,3 @@ export function createNavigationApiHistory(base = ''): RouterHistory {
 
     return history;
 }
-

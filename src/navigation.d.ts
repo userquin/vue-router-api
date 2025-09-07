@@ -106,10 +106,3 @@ interface NavigationInterceptOptions {
     focusReset?: "after-transition" | "manual";
     scroll?: "after-transition" | "manual";
 }
-
-// Augment the Window interface
-declare global {
-    interface Window {
-        navigation: Navigation;
-    }
-}
