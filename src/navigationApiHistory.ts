@@ -20,7 +20,21 @@ export function createNavigationApiHistory(base = ''): RouterHistory {
     const listeners: HistoryListener[] = [];
 
     const handleNavigate = (event: NavigateEvent): void => {
-        console.log(event)
+        if (event.navigationType === 'traverse') {
+            // Nos aseguramos de que tenemos una entrada actual para comparar
+            if (window.navigation.currentEntry) {
+                const fromIndex = window.navigation.currentEntry.index;
+                const toIndex = event.destination.index;
+
+                if (toIndex < fromIndex) {
+                    console.log('⬅️ ¡BROWSER BACK BUTTON CLICKED!');
+                    // Aquí puedes ejecutar lógica específica para la vuelta atrás
+                } else if (toIndex > fromIndex) {
+                    console.log('➡️ ¡BROWSER FORWARD BUTTON CLICKED!');
+                    // Lógica para la navegación hacia adelante
+                }
+            }
+        }
         // No interceptamos cambios de hash, descargas o si la navegación no puede ser interceptada
         if (!event.canIntercept || event.hashChange || event.downloadRequest) {
             return;
