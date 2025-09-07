@@ -5,7 +5,7 @@ export default antfu({
   ignores: [
     '**/dist/**',
     '**/node_modules/**',
-    // dont change vite layout: pnpm create vite > Vanilla > TypesScript
+    // dont change vite layout
     'tsconfig.*',
   ],
 })
