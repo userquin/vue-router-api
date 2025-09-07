@@ -3,8 +3,12 @@
     <header>
       <h1>Navigation API test</h1>
       <nav>
-        <RouterLink to="/a"> Go to A</RouterLink>
-        <RouterLink to="/b"> Go to B</RouterLink>
+        <RouterLink to="/a">
+          Go to A
+        </RouterLink>
+        <RouterLink to="/b">
+          Go to B
+        </RouterLink>
       </nav>
     </header>
     <main>
