@@ -1,29 +1,32 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createNavigationApiRouter, createRouter, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
-import { createNavigationApiHistory } from './navigationApiHistory.ts'
 
 // eslint-disable-next-line no-console
 console.log(window.navigation)
 
-const history = window.navigation
-  ? createNavigationApiHistory()
-  : createWebHistory()
-
-const router = createRouter({
-  history,
-  routes,
-})
-
-history.listen((to, from, info) => {
-// eslint-disable-next-line no-console
-  console.log(`History: ${from} => ${to} => ${info.type}`)
-})
-
-router.afterEach((to, from) => {
-// eslint-disable-next-line no-console
-  console.log(`Navigation to ${to.meta} from ${from?.fullPath}`)
-})
+const router = /* false && */window.navigation
+  ? createNavigationApiRouter({
+      location: '',
+      routes,
+    })
+  : createRouter({
+      history: createWebHistory(),
+      routes,
+    })
 
 createApp(App).use(router).mount('#app')
+
+router.isReady().then(() => {
+  // eslint-disable-next-line no-console
+  console.log('router is ready')
+  /* router.beforeEach((to, from, _) => {
+    // eslint-disable-next-line no-console
+    console.log(`BeforeEach to ${to.fullPath} from ${from?.fullPath}`)
+  })
+  router.afterEach((to, from, _) => {
+    // eslint-disable-next-line no-console
+    console.log(`AfterEach to ${to.fullPath} from ${from?.fullPath}`)
+  }) */
+})
