@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
+const router = useRouter()
 const route = useRoute()
 watch(route, (to) => {
   console.log('Route changed to:', to.fullPath)
 })
-onBeforeRouteUpdate((to, from, next, info) => {
-  console.log('Updating route to:', to.fullPath, 'from:', from?.fullPath, info)
+router.beforeEach((to, from, next, info) => {
+  console.log('beforeEach: updating route to:', to.fullPath, 'from:', from?.fullPath, info)
   next()
 })
 </script>
