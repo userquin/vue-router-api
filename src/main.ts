@@ -1,32 +1,57 @@
 import { createApp } from 'vue'
-import { createNavigationApiRouter, createRouter, createWebHistory } from 'vue-router'
+import { createClientRouter, createRouter, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
 
 // eslint-disable-next-line no-console
 console.log(window.navigation)
 
-const router = /* false && */window.navigation
-  ? createNavigationApiRouter({
-      location: '',
-      routes,
-    })
-  : createRouter({
+const router = createClientRouter({
+  legacy: {
+    factory: () => createRouter({
       history: createWebHistory(),
       routes,
-    })
+    }),
+  },
+  navigationApi: {
+    options: {
+      location: '',
+      routes,
+    },
+  },
+  viewTransition: true,
+})
 
-createApp(App).use(router).mount('#app')
+router.enableViewTransition({
+  onStart(transition) {
+    // eslint-disable-next-line no-console
+    console.log('View transition started', transition)
+  },
+  onFinished(transition) {
+    // eslint-disable-next-line no-console
+    console.log('View transition finished', transition)
+  },
+  onAborted(transition) {
+    // eslint-disable-next-line no-console
+    console.log('View transition aborted', transition)
+  },
+})
 
+const app = createApp(App)
+app.use(router)
+
+router.afterEach((to, from) => {
+  // eslint-disable-next-line no-console
+  console.log(`AfterEach to ${to.fullPath} from ${from?.fullPath}`)
+})
+
+app.mount('#app')
+
+/* router.beforeEach((to, from, _) => {
+  // eslint-disable-next-line no-console
+  console.log(`BeforeEach to ${to.fullPath} from ${from?.fullPath}`)
+}) */
 router.isReady().then(() => {
   // eslint-disable-next-line no-console
   console.log('router is ready')
-  /* router.beforeEach((to, from, _) => {
-    // eslint-disable-next-line no-console
-    console.log(`BeforeEach to ${to.fullPath} from ${from?.fullPath}`)
-  })
-  router.afterEach((to, from, _) => {
-    // eslint-disable-next-line no-console
-    console.log(`AfterEach to ${to.fullPath} from ${from?.fullPath}`)
-  }) */
 })
