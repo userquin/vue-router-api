@@ -6,4 +6,6 @@ This branch using this [feat: add navigation-api router](https://github.com/vuej
 
 Now the `vue-router` supports the [Navigation API](https://wicg.github.io/navigation-api/) and you can use the browser back and forward buttons.
 
-To check switch between the transition modes, just add/remove the `viewTransition: true,` line in the `createClientRouter` call, refresh the page and navigate with the header links.
+To check switch between the transition modes, just adding or removin the `viewTransition: true,` line in the `createClientRouter` call, refresh the page and navigate with the header links.
+
+You can also switch between Navigation API and Web History API router by adding or removing the `navigationApi` option or use Firefox or Safari that don't support the Navigation API.
