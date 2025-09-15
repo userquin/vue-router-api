@@ -8,10 +8,12 @@ console.log(window.navigation)
 
 const router = createClientRouter({
   legacy: {
-    factory: () => createRouter({
-      history: createWebHistory(),
-      routes,
-    }),
+    factory(transitionMode) {
+      return createRouter({
+        history: createWebHistory(),
+        routes,
+      }, transitionMode)
+    },
   },
   navigationApi: {
     options: {
