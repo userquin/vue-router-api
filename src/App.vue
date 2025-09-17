@@ -27,6 +27,9 @@ router.beforeEach((to, from, next, info) => {
         <RouterLink to="/b">
           Go to B
         </RouterLink>
+        <RouterLink to="/scroll-restoration">
+          Go to Scrol restoration
+        </RouterLink>
       </nav>
     </header>
     <main>

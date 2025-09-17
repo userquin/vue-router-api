@@ -21,6 +21,7 @@ declare module 'vue-router/auto-routes' {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/a': RouteRecordInfo<'/a', '/a', Record<never, never>, Record<never, never>>,
     '/b': RouteRecordInfo<'/b', '/b', Record<never, never>, Record<never, never>>,
+    '/scroll-restoration': RouteRecordInfo<'/scroll-restoration', '/scroll-restoration', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -44,6 +45,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/b.vue': {
       routes: '/b'
+      views: never
+    }
+    'src/pages/scroll-restoration.vue': {
+      routes: '/scroll-restoration'
       views: never
     }
   }
