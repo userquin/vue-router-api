@@ -10,6 +10,8 @@ const router = createClientRouter({
   legacy: {
     factory(transitionMode) {
       return createRouter({
+        enableScrollManagement: true,
+        focusManagement: true,
         history: createWebHistory(),
         routes,
       }, transitionMode)
