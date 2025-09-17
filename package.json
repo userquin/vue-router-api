@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "vue": "^3.5.21",
-    "vue-router": "https://pkg.pr.new/vue-router@d282525"
+    "vue-router": "https://pkg.pr.new/vue-router@11632e0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.2",

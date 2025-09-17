@@ -1,12 +1,12 @@
 import { createApp } from 'vue'
-import { createClientRouter, createRouter, createWebHistory } from 'vue-router'
+import { createModernRouter, createRouter, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
 import App from './App.vue'
 
 // eslint-disable-next-line no-console
 console.log(window.navigation)
 
-const router = createClientRouter({
+const router = createModernRouter({
   legacy: {
     factory(transitionMode) {
       return createRouter({
